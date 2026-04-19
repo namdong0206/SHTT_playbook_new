@@ -1,1 +1,34 @@
-# SHTT_playbook_new
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/3a8bd4e4-8e29-4fc9-a53c-f24a8efb611f
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
+
+---
+
+## Changelog (Code Review Fixes)
+
+### Đã sửa
+
+- **`PlaybookCard.tsx`** — Xoá import thừa (`jsPDF`, `html2canvas`, `Printer`); tách `ChartRenderer` thành sub-component; thay `alert()` bằng thông báo lỗi inline; encode URI khi tải PDF; thêm `DialogDescription` cho accessibility.
+- **`page.tsx`** — Xoá import thừa (`ChevronRight`, `Info`); loại bỏ duplicate sidebar code bằng cách dùng `SidebarNav`.
+- **`components/playbook/SidebarNav.tsx`** _(mới)_ — Component sidebar tái sử dụng cho cả desktop và mobile, với typing `LucideIcon` thay vì `any`.
+- **`next.config.ts`** — Bật lại `ignoreDuringBuilds: false` để ESLint chạy trong build.
+- **`package.json`** — Gỡ 5 dependencies không dùng: `@hookform/resolvers`, `docx`, `file-saver`, `jspdf`, `html2canvas`.
+- **`lib/pdfContent.ts`** — Xoá file dead code (~16 KB, không được import ở đâu).
+- **`hooks/use-mobile.ts`** — Xoá hook không dùng (dự án dùng Tailwind breakpoints).
